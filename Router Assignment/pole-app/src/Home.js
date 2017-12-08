@@ -42,7 +42,7 @@ class PoleName extends Component {
               <input type="text" placeholder="Enter Pole name" value={this.state.poleName} onChange={this.updatePoleName} />
               </label>
               <button onClick={this.buttonHandler}>
-                <NavLink to={`/${this.state.poleName}`}>Create Pole</NavLink>
+                <NavLink to={`/and/${this.state.poleName}`}>Create Pole</NavLink>
               </button>
             </div>
         }

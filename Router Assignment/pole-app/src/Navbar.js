@@ -11,8 +11,8 @@ const Navbar = () => {
     return (
         <div>
             <ul>
-                <li><NavLink exact to="/">Home</NavLink></li>
-                <li><NavLink to="/previous-pols">Previous Poles</NavLink></li>
+                <li><NavLink to="/">Home</NavLink></li>
+                <li><NavLink to="/previouspole">Previous Poles</NavLink></li>
                 <li><NavLink to="/pole-page">Pole Page</NavLink></li>
             </ul>
         </div>
