@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TextField from 'material-ui/TextField';
 import logo from './logo.svg';
 import './App.css';
 import {
@@ -37,6 +38,12 @@ class PoleName extends Component {
             <div></div>
             :
             <div>
+              {/* <TextField
+                hintText="Pole Name"
+                floatingLabelText="Enter Pole Name"
+                value={this.state.poleName}
+                onChange={this.updatePoleName}
+              /><br /> */}
               <label>
                 Enter Pole Name:
               <input type="text" placeholder="Enter Pole name" value={this.state.poleName} onChange={this.updatePoleName} />
