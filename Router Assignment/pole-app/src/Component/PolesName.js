@@ -33,9 +33,16 @@ class PoleName extends Component {
             console.log('poleNameAndKey: ', this.state.poleNameAndKey);
         })
     }
+    componentDidMount(){
+        this.database.on('child_removed', snapshot=>{
+            this.state.poleNameAndKey.map(eachObj=>{
+                if(snapshot.key === eachObj.key){
+                }
+            })
+            })
+    }
     deleteHandler = (datakey) =>{
         console.log('i am execute', datakey,this);
-
         this.database.child(datakey).remove();
     }
     render() {
