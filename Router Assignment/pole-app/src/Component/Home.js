@@ -76,13 +76,22 @@ class Home extends React.Component {
             options: [this.state.a, this.state.b, this.state.c, this.state.d]
         }
         let database = fire.database().ref('/pole-App');
-        if(obj.options.indexOf("") === -1  && obj.poleName && obj.question){
+        if (obj.options.indexOf("") === -1 && obj.poleName && obj.question) {
 
-            database.push(obj); 
+            database.push(obj);
+            console.log("data is submitted")
         }
-        else{
+        else {
 
         }
+        this.setState({
+            poleName: '',
+            question: '',
+            a: '',
+            b: '',
+            c: '',
+            d: ''
+        });
     }
 
     render() {
@@ -91,7 +100,7 @@ class Home extends React.Component {
                 <div style={mainBoundry}>
                     <span style={text}> </span>
                     <TextField
-                        valur={this.state.poleName}
+                        value={this.state.poleName}
                         onChange={this.poleNameHandler}
                         style={nameStyle}
                         hintText="Pole Name"
@@ -100,7 +109,7 @@ class Home extends React.Component {
                     <span style={text}> </span>
                     <TextField
                         hintText=""
-                        valur={this.state.question}
+                        value={this.state.question}
                         floatingLabelText="Question"
                         onChange={this.questionHandler}
                         fullWidth={true}
@@ -110,16 +119,16 @@ class Home extends React.Component {
                     /><br />
                     <span style={text}> </span>
                     <Paper zDepth={2} style={optionStyle}>
-                        <TextField valur={this.state.a}
+                        <TextField value={this.state.a}
                             onChange={this.aHandler} hintText="Enter Option A" style={style} underlineShow={false} />
                         <Divider />
-                        <TextField valur={this.state.b}
+                        <TextField value={this.state.b}
                             onChange={this.bHandler} hintText="Enter Option B" style={style} underlineShow={false} />
                         <Divider />
-                        <TextField valur={this.state.c}
+                        <TextField value={this.state.c}
                             onChange={this.cHandler} hintText="Enter Option C" style={style} underlineShow={false} />
                         <Divider />
-                        <TextField valur={this.state.d}
+                        <TextField value={this.state.d}
                             onChange={this.dHandler} hintText="Enter Option D" style={style} underlineShow={false} />
                         <Divider />
                     </Paper>

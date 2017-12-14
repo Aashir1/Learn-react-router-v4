@@ -25,24 +25,36 @@ class PoleName extends Component {
         // let database = fire.database().ref('/pole-App');
         this.database.on('child_added', snapshot => {
             let obj = {};
+            let tempArray = this.state.poleNameAndKey;
             obj['name'] = snapshot.val().poleName;
             obj['key'] = snapshot.key;
+            tempArray.push(obj);
             this.setState({
-                poleNameAndKey: [...this.state.poleNameAndKey, obj]
+                // poleNameAndKey: [...this.state.poleNameAndKey, obj]
+                poleNameAndKey : tempArray
             });
             console.log('poleNameAndKey: ', this.state.poleNameAndKey);
         })
     }
-    componentDidMount(){
-        this.database.on('child_removed', snapshot=>{
-            this.state.poleNameAndKey.map(eachObj=>{
-                if(snapshot.key === eachObj.key){
+    componentDidMount() {
+        this.database.on('child_removed', snapshot => {
+            this.state.poleNameAndKey.map(eachObj => {
+                if (snapshot.key === eachObj.key) {
+                    let tempArray = this.state.poleNameAndKey;
+                    for (let i = 0; i < tempArray.length; i++) {
+                        if (tempArray[i].key === snapshot.key) {
+                            tempArray.splice(i, 1);
+                        }
+                    }
+                    this.setState({
+                        poleNameAndKey: tempArray
+                    })
                 }
             })
-            })
+        })
     }
-    deleteHandler = (datakey) =>{
-        console.log('i am execute', datakey,this);
+    deleteHandler = (datakey) => {
+        console.log('i am execute', datakey, this);
         this.database.child(datakey).remove();
     }
     render() {
@@ -54,8 +66,8 @@ class PoleName extends Component {
                         {
                             this.state.poleNameAndKey.map((obj) => {
                                 return (
-                                    <div>
-                                        <ListItem key={obj.key} rightIcon={<DeleteIcon onClick={()=>{this.deleteHandler(obj.key)}} />} primaryText={<Link to="/previouspole/anotherOne" > {obj.name} </Link>} />
+                                    <div key={obj.key}>
+                                        <ListItem key={obj.key} rightIcon={<DeleteIcon onClick={() => { this.deleteHandler(obj.key) }} />} primaryText={<Link to={`/previouspole/${obj.name}`} > {obj.name} </Link>} />
                                         {/* <ListItem button component={Divider} to='/previouspole/ll'>{obj.name}</ListItem> */}
                                         <Divider />
                                     </div>

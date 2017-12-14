@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../Navbar';
 import Home from './Home';
 import PoleName from './PolesName';
+import Question from './Question';
 import {
     BrowserRouter as Router,
     Route,
@@ -16,7 +17,8 @@ const PoleApp = () => {
             <div>
                 <Navbar />
                 <Route exact path="/" component={Home} />
-                <Route path="/previouspole" component={PoleName} />
+                <Route exact path="/previouspole" component={PoleName} />
+                <Route exact path="/previouspole/:poleName" component={Question} />
             </div>
         </Router>
     );
