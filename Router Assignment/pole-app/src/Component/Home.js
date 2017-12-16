@@ -73,7 +73,8 @@ class Home extends React.Component {
         let obj = {
             poleName: this.state.poleName,
             question: this.state.question,
-            options: [this.state.a, this.state.b, this.state.c, this.state.d]
+            options: [this.state.a, this.state.b, this.state.c, this.state.d],
+            optionsPercentage: 0
         }
         let database = fire.database().ref('/pole-App');
         if (obj.options.indexOf("") === -1 && obj.poleName && obj.question) {
