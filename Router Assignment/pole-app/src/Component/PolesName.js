@@ -24,6 +24,7 @@ class PoleName extends Component {
     componentWillMount() {
         // let database = fire.database().ref('/pole-App');
         this.database.on('child_added', snapshot => {
+            console.log(snapshot.val());
             let obj = {};
             let tempArray = this.state.poleNameAndKey;
             obj['name'] = snapshot.val().poleName;

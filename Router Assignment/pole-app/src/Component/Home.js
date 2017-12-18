@@ -74,12 +74,14 @@ class Home extends React.Component {
             poleName: this.state.poleName,
             question: this.state.question,
             options: [this.state.a, this.state.b, this.state.c, this.state.d],
+            // options: [{a:this.state.a, vote: 0}, {b:this.state.b, vote: 0}, {c:this.state.c, vote: 0}, {d:this.state.d, vote: 0}],            
             optionsPercentage: 0
         }
-        let database = fire.database().ref('/pole-App');
+        obj['options'].sort();
+        let database = fire.database().ref('/pole-App/' + this.state.poleName);
         if (obj.options.indexOf("") === -1 && obj.poleName && obj.question) {
 
-            database.push(obj);
+            database.set(obj);
             console.log("data is submitted")
         }
         else {
