@@ -5,6 +5,7 @@ import fire from '../firebase';
 import MobileTearSheet from './MobileTearSheet';
 import { List, ListItem } from 'material-ui/List';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
+import EditIcon from 'material-ui/svg-icons/image/edit';
 import Divider from 'material-ui/Divider';
 import {
     BrowserRouter as Router,
@@ -12,6 +13,16 @@ import {
     Switch,
     Link
 } from 'react-router-dom';
+
+const styles={
+    
+    width: '30%',
+    float: 'right',
+    textAlign: 'right',
+    position: 'relative',
+    bottom: '4px'
+}
+
 class PoleName extends Component {
     constructor(props) {
         super(props);
@@ -68,7 +79,7 @@ class PoleName extends Component {
                             this.state.poleNameAndKey.map((obj) => {
                                 return (
                                     <div key={obj.key}>
-                                        <ListItem key={obj.key} rightIcon={<DeleteIcon onClick={() => { this.deleteHandler(obj.key) }} />} primaryText={<Link to={`/previouspole/${obj.name}`} > {obj.name} </Link>} />
+                                        <ListItem style={{paddingRight:'16px'}} key={obj.key} rightIcon={<Icons deleteonClick={() => { this.deleteHandler(obj.key) }} />} primaryText={<Link to={`/previouspole/${obj.name}`} > {obj.name} </Link>} />
                                         {/* <ListItem button component={Divider} to='/previouspole/ll'>{obj.name}</ListItem> */}
                                         <Divider />
                                     </div>
@@ -80,6 +91,26 @@ class PoleName extends Component {
             </MuiThemeProvider>
         )
     }
+}
+const Icons = (props) =>{
+    return(
+        <div style={{
+    
+    width: '30%',
+    float: 'right',
+    textAlign: 'right',
+    position: 'relative',
+    bottom: '4px'
+}}>
+        <span>
+            <DeleteIcon onClick = {props.deleteonClick} />
+        </span>
+        <span>
+            <EditIcon onClick = {props.editonClick} />
+        </span>
+            
+        </div>
+    );
 }
 
 export default PoleName;
